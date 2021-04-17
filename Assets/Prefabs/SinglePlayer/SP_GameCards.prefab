@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6742602010176355927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6169566703394367712}
+  - component: {fileID: 6435100522277268287}
+  m_Layer: 0
+  m_Name: SP_GameCards
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6169566703394367712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6742602010176355927}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 408.84796, y: 202.315, z: -1376.4375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6435100522277268287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6742602010176355927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a011ba3722660e54dbf118c94158f47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Kushan_Assault_Frigate: {fileID: 6935620523227465546, guid: 5748e642394d12245993097040963764,
+    type: 3}
+  Kushan_Bomber: {fileID: 6935620523227465546, guid: edc8be0b5b459ff47acc96413d7fae77,
+    type: 3}
+  Kushan_Carrier: {fileID: 6935620523227465546, guid: 28e6e4eafbba56b4d9022a6c3d6a130f,
+    type: 3}
+  Kushan_Decoy: {fileID: 6935620523227465546, guid: 3f969f37b30c724419102ee684ce607e,
+    type: 3}
+  Kushan_Destroyer: {fileID: 6935620523227465546, guid: 7bb397f7cb118914fbbec9dd5555414a,
+    type: 3}
+  Kushan_Heavy_Corvette: {fileID: 6935620523227465546, guid: 1dc0b7475aba01a48830c8d552e537b4,
+    type: 3}
+  Kushan_Heavy_Cruiser: {fileID: 6935620523227465546, guid: 1b950adae1f7ace4fac1ec29b575a305,
+    type: 3}
+  Kushan_Interceptor: {fileID: 6935620523227465546, guid: 3ed4efaa235ac3b479637c9f03a1d8a4,
+    type: 3}
+  Kushan_Ion_Frigate: {fileID: 6935620523227465546, guid: 8661562bb9800d84e969b062b1cda7e0,
+    type: 3}
+  Kushan_Light_Corvette: {fileID: 6935620523227465546, guid: 6545166b5ac164a469b38d540e2bbf98,
+    type: 3}
+  Kushan_Missle_Destroyer: {fileID: 6935620523227465546, guid: 0fdd2e6870534b5438b938e4cdb01625,
+    type: 3}
+  Kushan_Multigun_Corvette: {fileID: 6935620523227465546, guid: 1add03644058d7a43bd25ec318f25794,
+    type: 3}
+  Kushan_Scout: {fileID: 6935620523227465546, guid: 62ae92818d07d3349b973b6469c0f2e1,
+    type: 3}
+  Kushan_Support_Frigate: {fileID: 6935620523227465546, guid: 8f91f93878adb1d42aeacb43e4f7b3c1,
+    type: 3}
+  Kushan_Salvage_Corvette: {fileID: 6935620523227465546, guid: c9b5fd12892765448b348750e6efbc99,
+    type: 3}
+  Kushan_Repair_Corvette: {fileID: 6935620523227465546, guid: bf451ba17c5f1c1428e46c46828cf9de,
+    type: 3}
+  Taiidan_Assault_Frigate: {fileID: 0}
+  Taiidan_Attack_Bomber: {fileID: 0}
+  Taiidan_Carrier: {fileID: 0}
+  Taiidan_Decoy: {fileID: 0}
+  Taiidan_Destroyer: {fileID: 0}
+  Taiidan_Heavy_Corvette: {fileID: 0}
+  Taiidan_Heavy_Cruiser: {fileID: 0}
+  Taiidan_Interceptor: {fileID: 0}
+  Taiidan_Ion_Frigate: {fileID: 0}
+  Taiidan_Light_Corvette: {fileID: 0}
+  Taiidan_Missle_Destroyer: {fileID: 0}
+  Taiidan_Multigun_Corvette: {fileID: 0}
+  Taiidan_Scout_Fighter: {fileID: 0}

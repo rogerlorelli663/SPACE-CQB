@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8435818990160225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3681311166918170373}
+  - component: {fileID: 8832846698353093516}
+  - component: {fileID: 7288236398492073400}
+  - component: {fileID: 2456064972740030410}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3681311166918170373
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8435818990160225}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 793, y: 403, z: 0.83593756}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8832846698353093516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8435818990160225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+--- !u!114 &7288236398492073400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8435818990160225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+--- !u!114 &2456064972740030410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8435818990160225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac72b218a9d0ea40ba61f57b47d90f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  Fighters:
+  - {fileID: 6935620523227465546, guid: edc8be0b5b459ff47acc96413d7fae77, type: 3}
+  - {fileID: 6935620523227465546, guid: 62ae92818d07d3349b973b6469c0f2e1, type: 3}
+  - {fileID: 6935620523227465546, guid: 3ed4efaa235ac3b479637c9f03a1d8a4, type: 3}
+  Corvettes:
+  - {fileID: 6935620523227465546, guid: 1dc0b7475aba01a48830c8d552e537b4, type: 3}
+  - {fileID: 6935620523227465546, guid: 6545166b5ac164a469b38d540e2bbf98, type: 3}
+  - {fileID: 6935620523227465546, guid: c9b5fd12892765448b348750e6efbc99, type: 3}
+  - {fileID: 6935620523227465546, guid: 1add03644058d7a43bd25ec318f25794, type: 3}
+  - {fileID: 6935620523227465546, guid: bf451ba17c5f1c1428e46c46828cf9de, type: 3}
+  Frigates:
+  - {fileID: 6935620523227465546, guid: 5748e642394d12245993097040963764, type: 3}
+  - {fileID: 6935620523227465546, guid: 8f91f93878adb1d42aeacb43e4f7b3c1, type: 3}
+  - {fileID: 6935620523227465546, guid: 8661562bb9800d84e969b062b1cda7e0, type: 3}
+  Capitalships:
+  - {fileID: 6935620523227465546, guid: 0fdd2e6870534b5438b938e4cdb01625, type: 3}
+  - {fileID: 6935620523227465546, guid: 7bb397f7cb118914fbbec9dd5555414a, type: 3}
+  - {fileID: 6935620523227465546, guid: 1b950adae1f7ace4fac1ec29b575a305, type: 3}
+  Player: {fileID: 0}
+  Enemy: {fileID: 0}
+  PlayerDeck: {fileID: 0}
+  PassingToken: {fileID: 1499672563657424161, guid: 3482a36b51db795458e39b14a1e0bfb4,
+    type: 3}
+  EndOfRoundToken: {fileID: 1499672563657424161, guid: e6cea7ccb9b95004a8740833d4c8073a,
+    type: 3}
+  EnemyDeck: {fileID: 0}
+  WeatherCard: {fileID: 0}
+  WeatherField: {fileID: 0}
+  EnemyHand: {fileID: 0}
+  EnemyMelee: {fileID: 0}
+  PlayerHand: {fileID: 0}
+  PlayerMelee: {fileID: 0}
+  PlayerCounter: {fileID: 0}
+  EnemyCounter: {fileID: 0}
+  Outcome: {fileID: 0}
+  state: 0
