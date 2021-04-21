@@ -1,6 +1,3 @@
-# Gwent
+# SPACE:CQB
 ## NAMES
-  Roger Lorelli  
-  Maxwell Light  
-  Kevin Cotto-Lazo  
-  Daniel Quintana  
+  Roger Lorelli   
