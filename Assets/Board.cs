@@ -32,4 +32,14 @@ public class Board : MonoBehaviour
         GameObject token = PrimaryEnvironmentalModifier.GetComponent<ModifierCharacteristics>().ActivateDescriptor();
         return token;
     }
+
+    public Modifiers.EnviroModifier GetModifier()
+    {
+        return this.PrimaryEnvironmentalModifier.GetComponent<ModifierCharacteristics>().GetModifier();
+    }
+
+    public void PrintModifier()
+    {
+        Debug.Log("Active Modifier: " + PrimaryEnvironmentalModifier.name);
+    }
 }

@@ -56,7 +56,7 @@ public class Manage_Card_Collection : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             card = transform.GetChild(i).gameObject;
-            totalpower += card.GetComponent<CQBCard>().GetPower();
+            totalpower += card.GetComponent<CQBCard>().GetBasePower();
         }
         return totalpower;
     }

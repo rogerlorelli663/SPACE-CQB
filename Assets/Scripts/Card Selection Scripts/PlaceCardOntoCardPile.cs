@@ -5,7 +5,8 @@ using Mirror;
 
 public class PlaceCardOntoCardPile : MonoBehaviour
 {
-   // private PlayerBehavior PlayerBehavior;
+    // private PlayerBehavior PlayerBehavior;
+    [SerializeField] private GameObject GameMaster;
     private CardSelector cardSelector;
     private SP_CardPile.CardPileType cardType;
     private GameObject card;
@@ -55,5 +56,6 @@ public class PlaceCardOntoCardPile : MonoBehaviour
     {
         cardSelector.AnimateCardToCardPile(cardPile);
         cardPile.GetComponent<SP_CardPile>().TransferCardToCardPile(cardSelector.GetOriginalCard());
+        GameMaster.GetComponent<GameMaster>().SetPlayedCard(cardSelector.GetOriginalCard());
     }
 }

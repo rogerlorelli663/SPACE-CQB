@@ -53,6 +53,7 @@ public class SP_Deck : MonoBehaviour
 
     public void DealCards(int number_of_cards, GameObject newParent)
     {
+        cards = GetCards();
         GameObject card;
         int iterations;
         Debug.Log("Cards: " + cards.Count);

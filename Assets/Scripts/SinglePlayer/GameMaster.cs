@@ -31,6 +31,9 @@ public class GameMaster : MonoBehaviour
     [SerializeField] private GameObject DeckSelection;
     [SerializeField] private GameObject PreGameTokenDisplay;
     [SerializeField] private GameObject GameTokenDisplay;
+    [SerializeField] private GameObject playedCard;
+    [SerializeField] private Player_Behavior CurrentPlayer;
+    [SerializeField] private Player_Behavior NextPlayer;
 
 
 
@@ -44,7 +47,9 @@ public class GameMaster : MonoBehaviour
 
         SelectedBoard = SelectBoard();
         SelectedBoard.GetComponent<Board>().Activate();
+        SelectedBoard.GetComponent<Board>().PrintModifier();
         GameObject token = SelectedBoard.GetComponent<Board>().ActivateDescriptor();
+
         token.transform.SetParent(PreGameTokenDisplay.transform);
         token.transform.localScale = new Vector3(1f, 1f, 1f);
 
@@ -59,27 +64,14 @@ public class GameMaster : MonoBehaviour
             {
                 if (Opponent.GetHand().GetNumberOfCards() > 0)
                 {
-                    Opponent.GetComponent<Player_Behavior>().make_a_move();
+                    playedCard = Opponent.GetComponent<Player_Behavior>().make_a_move();
+
                 }
                 else
                 {
                     Opponent.GetPlayerState().SetPassing();
                 }
-                //DetermineNewStates();
             }
-            /*else if (player.isPlayersTurn())
-            {
-                if (player_cards == 0)
-                {
-                    Player.GetPlayerState().SetPassing();
-                    //DetermineNewStates();
-                }
-                if (player_cards != Player.GetHand().GetNumberOfCards())
-                {
-                    player_cards = Player.GetHand().GetNumberOfCards();
-                    //DetermineNewStates();
-                }
-            }*/
             else if (player.isPlayersPassing() && opponent.isPlayersPassing())
             {
 
@@ -95,14 +87,15 @@ public class GameMaster : MonoBehaviour
                 Debug.Log(outcome);
                 RollForInitiative();
                 Invoke("ResetBoard", 2);
-                if(cardsDelt == false)
+                if (cardsDelt == false)
                 {
                     Invoke("MainMenuReturn", 2);
                 }
-                else if(RoundWinner != null)
+                else if (RoundWinner != null)
                 {
                     RoundWinner.GetDeck().DealCards(1, RoundWinner.GetHand().gameObject);
-                    if(RoundWinner == Opponent)
+                    ApplyModifiers(RoundWinner);
+                    if (RoundWinner == Opponent)
                     {
                         Opponent.GetHand().ShowBack();
                     }
@@ -112,34 +105,32 @@ public class GameMaster : MonoBehaviour
                     }
                 }
                 return;
-                //Application.Quit();
             }
+        }
+        if(playedCard != null)
+        {
+            ApplyCardModifiers(playedCard, CurrentPlayer, NextPlayer);
+            playedCard = null;
         }
         DetermineNewStates();
         playerCounter.Counter();
         opponentCounter.Counter();
     }
 
-/*    private void Update()
+    private void Update()
     {
-        if(cardsDelt)
+        if (cardsDelt)
         {
             if (opponent.isPlayersTurn())
             {
-                Opponent.GetComponent<Player_Behavior>().make_a_move();
-                DetermineNewStates(Opponent, Player);
-            }
-            else if (player.isPlayersTurn())
-            {
-                if (player_cards == 0)
+                if (Opponent.GetHand().GetNumberOfCards() > 0)
                 {
-                    Player.GetPlayerState().SetPassing();
-                    DetermineNewStates(Opponent,Player);
+                    playedCard = Opponent.GetComponent<Player_Behavior>().make_a_move();
+
                 }
-                if (player_cards != Player.GetHand().GetNumberOfCards())
+                else
                 {
-                    player_cards = Player.GetHand().GetNumberOfCards();
-                    DetermineNewStates(Player, Opponent);
+                    Opponent.GetPlayerState().SetPassing();
                 }
             }
             else if (player.isPlayersPassing() && opponent.isPlayersPassing())
@@ -148,28 +139,45 @@ public class GameMaster : MonoBehaviour
                 playerCounter.Counter();
                 opponentCounter.Counter();
                 string outcome = DetermineRoundWinner();
-                Player.ClearField();
-                Opponent.ClearField();
-                playerCounter.Counter();
-                opponentCounter.Counter();
-
-                if (Player.GetScore() == Num_to_Win || Opponent.GetScore() == Num_to_Win)
+                if (Player.GetScore() == Num_to_Win || Opponent.GetScore() == Num_to_Win || games_played == Max_Games)
                 {
                     outcome = DetermineGameWinner();
                     cardsDelt = false;
                 }
-
                 Outcome.Display(outcome);
                 Debug.Log(outcome);
                 RollForInitiative();
+                Invoke("ResetBoard", 2);
+                if (cardsDelt == false)
+                {
+                    Invoke("MainMenuReturn", 2);
+                }
+                else if (RoundWinner != null)
+                {
+                    RoundWinner.GetDeck().DealCards(1, RoundWinner.GetHand().gameObject);
+                    ApplyModifiers(RoundWinner);
+                    if (RoundWinner == Opponent)
+                    {
+                        Opponent.GetHand().ShowBack();
+                    }
+                    else
+                    {
+                        player_cards = Player.GetHand().GetNumberOfCards();
+                    }
+                }
                 return;
-                //Application.Quit();
             }
-            playerCounter.Counter();
-            opponentCounter.Counter();
         }
+        if (playedCard != null)
+        {
+            ApplyCardModifiers(playedCard, CurrentPlayer, NextPlayer);
+            playedCard = null;
+        }
+        DetermineNewStates();
+        playerCounter.Counter();
+        opponentCounter.Counter();
     }
-*/
+
     private string DetermineRoundWinner()
     {
         int player = playerCounter.GetCurrentPoints();
@@ -214,12 +222,16 @@ public class GameMaster : MonoBehaviour
             Opponent.GetPlayerState().SetBattleState(1);
             CheckCardCount(Opponent);
             CurrentTurnToken.GetComponent<TurnToken>().ActivateOpponentTurn();
+            CurrentPlayer = Opponent;
+            NextPlayer = Player;
         }
         else if(!Player.GetPlayerState().isPlayersPassing() && Opponent.GetPlayerState().isPlayersPassing())
         {
             Player.GetPlayerState().SetBattleState(1);
             CheckCardCount(Player);
             CurrentTurnToken.GetComponent<TurnToken>().ActivatePlayerTurn();
+            CurrentPlayer = Player;
+            NextPlayer = Opponent;
         }
         else if(!Player.GetPlayerState().isPlayersTurn() && Opponent.GetPlayerState().isPlayersTurn())
         {
@@ -227,6 +239,9 @@ public class GameMaster : MonoBehaviour
             Player.GetPlayerState().SetBattleState(1);
             CheckCardCount(Player);
             CurrentTurnToken.GetComponent<TurnToken>().ActivatePlayerTurn();
+            CurrentPlayer = Player;
+            NextPlayer = Opponent;
+
         }
         else if(Player.GetPlayerState().isPlayersTurn() && !Opponent.GetPlayerState().isPlayersTurn())
         {
@@ -238,6 +253,8 @@ public class GameMaster : MonoBehaviour
                 Opponent.GetPlayerState().SetBattleState(1);
                 CheckCardCount(Opponent);
                 CurrentTurnToken.GetComponent<TurnToken>().ActivateOpponentTurn();
+                CurrentPlayer = Opponent;
+                NextPlayer = Player;
             }
         }
     }
@@ -269,6 +286,8 @@ public class GameMaster : MonoBehaviour
         {
             Player.GetPlayerState().SetBattleState(1);
             CurrentTurnToken.GetComponent<TurnToken>().ActivatePlayerTurn();
+            CurrentPlayer = Player;
+            NextPlayer = Opponent;
             Opponent.GetPlayerState().SetBattleState(0);
         }
         else
@@ -276,6 +295,8 @@ public class GameMaster : MonoBehaviour
             Player.GetPlayerState().SetBattleState(0);
             Opponent.GetPlayerState().SetBattleState(1);
             CurrentTurnToken.GetComponent<TurnToken>().ActivateOpponentTurn();
+            CurrentPlayer = Opponent;
+            NextPlayer = Player;
         }
     }
 
@@ -363,6 +384,83 @@ public class GameMaster : MonoBehaviour
         {
             token.transform.SetParent(GameTokenDisplay.transform,false);
         }
+        Debug.Log("Applying Modifier to Player");
+        ApplyModifiers(Player);
+        Debug.Log("Applying Modifier to Opponent");
+        ApplyModifiers(Opponent);
     }
 
+    public void ProcessEnviroModifier(GameObject card)
+    {
+        Modifiers.EnviroModifier enviroModifier = SelectedBoard.GetComponent<Board>().GetModifier();
+        
+        switch(enviroModifier)
+        {
+            case Modifiers.EnviroModifier.Blackhole:
+                ModifierCharacteristics.Blackhole(card);
+                card.GetComponent<CQBCard>().SetEnviro();
+                break;
+            case Modifiers.EnviroModifier.PowerCap:
+                ModifierCharacteristics.PowerCap(card);
+                card.GetComponent<CQBCard>().SetEnviro();
+                break;
+            case Modifiers.EnviroModifier.SuperNova:
+                ModifierCharacteristics.SuperNova(card);
+                card.GetComponent<CQBCard>().SetEnviro();
+                break;
+            case Modifiers.EnviroModifier.ECM:
+                ModifierCharacteristics.ECM(card);
+                card.GetComponent<CQBCard>().SetEnviro();
+                break;
+        }
+    }
+
+    private void ApplyModifiers(Player_Behavior combatant)
+    {
+        List<GameObject> cards = combatant.GetHand().GetCardsInCardPile();
+        foreach (GameObject card in cards)
+        {
+            if(!card.GetComponent<CQBCard>().Is_Modified_Enviro())
+                ProcessEnviroModifier(card);
+        }
+    }
+
+    private void ApplyCardModifiers(GameObject card, Player_Behavior player, Player_Behavior opponent)
+    {
+        Modifiers.EnviroModifier enviroModifier = SelectedBoard.GetComponent<Board>().GetModifier();
+        if (enviroModifier == Modifiers.EnviroModifier.NoCapital && card.GetComponent<CQBCard>().GetUnitType() == CQBCard.UnitType.CAPITAL)
+        {
+            card.transform.SetParent(player.GetDiscard().transform);
+        }
+        else
+        {
+            if (card.GetComponent<CQBCard>().HasAbility() && !card.GetComponent<CQBCard>().Suppressed())
+            {
+                Modifiers.CardModifiers ability = card.GetComponent<CQBCard>().GetAbility();
+                switch (ability)
+                {
+                    case Modifiers.CardModifiers.BattleBuddiesAssault:
+                        ModifierCharacteristics.BattleBuddiesAssault(card, player);
+                        break;
+                    case Modifiers.CardModifiers.BattleBuddiesIon:
+                        ModifierCharacteristics.BattleBuddiesIon(card, player);
+                        break;
+                    case Modifiers.CardModifiers.HunterPack:
+                        break;
+                    case Modifiers.CardModifiers.Anti_Strike:
+                        break;
+                    case Modifiers.CardModifiers.Bomber:
+                        break;
+                    case Modifiers.CardModifiers.Quick_Deploy:
+                        break;
+                }
+            }
+        }
+        
+    }
+
+    public void SetPlayedCard(GameObject card)
+    {
+        playedCard = card;
+    }
 }

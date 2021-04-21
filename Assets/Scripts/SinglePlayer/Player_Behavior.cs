@@ -25,8 +25,9 @@ public class Player_Behavior : MonoBehaviour
         Playfield.SetActive(false);
         rounds_won = 0;
     }
-    public void make_a_move()
+    public GameObject make_a_move()
     {
+        card = null;
         int seed = (int)(Time.realtimeSinceStartup * 100);
         Random.InitState(seed);
         roll = Random.Range(1, 101);
@@ -44,6 +45,7 @@ public class Player_Behavior : MonoBehaviour
             card.transform.SetParent(Playfield.transform, false);
             card.GetComponent<CQBCard>().ActivatePlayable();
         }
+        return card;
     }
 
     public SP_CardPile GetHand()
@@ -93,7 +95,7 @@ public class Player_Behavior : MonoBehaviour
 
     public SP_Deck GetDeck()
     {
-        return this.Deck;
+        return Deck;
     }
 
     public void DisablePass()
@@ -117,5 +119,15 @@ public class Player_Behavior : MonoBehaviour
     public void EnableCrystals()
     {
         PlayerTokens.SetActive(true);
+    }
+
+    public GameObject GetDiscard()
+    {
+        return discard;
+    }
+
+    public GameObject GetPlayField()
+    {
+        return Playfield;
     }
 }

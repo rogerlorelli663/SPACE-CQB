@@ -78,14 +78,14 @@ public class AccountCharacteristics : MonoBehaviour
         deck2 = save.deck2;
         deck3 = save.deck3;
 
-        Debug.Log("Entering Collection Parse");
+        //Debug.Log("Entering Collection Parse");
         Kushan_cards = save.KushanCollection;
-        Debug.Log("Kushan");
+        //Debug.Log("Kushan");
        // PrintCollection(0);
         Taiidan_cards = save.TaiidanCollection;
-        Debug.Log("Taiidan");
+        //Debug.Log("Taiidan");
        // PrintCollection(1);
-        Debug.Log("Loaded all data");
+       // Debug.Log("Loaded all data");
     }
 
     public void SetNewName(string s)

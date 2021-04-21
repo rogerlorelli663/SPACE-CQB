@@ -19,6 +19,7 @@ public class CQBCard : MonoBehaviour
         CORVETTE = 1,
         FRIGATE = 2,
         CAPITAL = 3,
+        SUPPORT = 4,
     }
 
     public enum FactionType
@@ -44,6 +45,19 @@ public class CQBCard : MonoBehaviour
     [SerializeField] private GameObject BaseSymbol;
     [SerializeField] private GameObject PositiveSymbol;
     [SerializeField] private GameObject NegativeSymbol;
+    [SerializeField] private Modifiers.CardModifiers ability;
+    [SerializeField] private bool is_enviro_modified;
+    [SerializeField] private bool is_modified_buddy;
+    [SerializeField] private bool is_modified_hunter;
+    [SerializeField] private bool is_debuffed;
+
+    private void Start()
+    {
+        is_enviro_modified = false;
+        is_modified_buddy = false;
+        is_modified_hunter = false;
+        is_debuffed = false;
+    }
 
 
     public virtual string GetCardName()
@@ -65,9 +79,14 @@ public class CQBCard : MonoBehaviour
         return unitType;
     }
 
-    public virtual int GetPower()
+    public virtual int GetBasePower()
     {
-        return this.power;
+        return power;
+    }
+
+    public void SetPower(int value)
+    {
+        PowerText.text = "" + value;
     }
 
     public FactionType GetFaction()
@@ -124,7 +143,8 @@ public class CQBCard : MonoBehaviour
     }
 
     public void ActivateBaseCost()
-    { 
+    {
+        is_enviro_modified = false;
         if(!BasePower.activeSelf)
         {
             BasePower.SetActive(true);
@@ -158,6 +178,7 @@ public class CQBCard : MonoBehaviour
     }
     public void ActivatePositiveCost(int modified_power)
     {
+        is_enviro_modified = true;
         if (BasePower.activeSelf)
         {
             BasePower.SetActive(false);
@@ -230,20 +251,83 @@ public class CQBCard : MonoBehaviour
         PowerText.text = "" + power;
     }
 
-    public void ActivateNegative(int modified_power)
+    public bool Is_Modified_Enviro()
     {
-        ActivateNegativeCost(modified_power);
-        if (BaseSymbol != null)
-        {
-            ActivateNegativeSymbol();
-        }
+        return is_enviro_modified;
     }
-    public void ActivatePositive(int modified_power)
+
+    public void SetEnviro()
     {
-        ActivatePositiveCost(modified_power);
-        if(BaseSymbol != null)
-        {
-            ActivatePositiveSymbol();
-        }
+        is_enviro_modified = true;
+    }
+
+    public void ResetEnviro()
+    {
+        is_enviro_modified = false;
+    }
+
+    public int GetCurrentPower()
+    {
+        return int.Parse(PowerText.text);
+    }
+
+    public bool HasAbility()
+    {
+        return ability != Modifiers.CardModifiers.None;
+    }
+
+    public void SetBuddy()
+    {
+        is_modified_buddy = true;
+    }
+
+    public void resetBuddy()
+    {
+        is_modified_buddy = false;
+    }
+
+    public bool IsBuddy()
+    {
+        return is_modified_buddy;
+    }
+
+    public void SetHunter()
+    {
+        is_modified_hunter = true;
+    }
+
+    public void resetHunter()
+    {
+        is_modified_hunter = false;
+    }
+
+    public bool IsHunter()
+    {
+        return is_modified_hunter;
+    }
+
+    public Modifiers.CardModifiers GetAbility()
+    {
+        return ability;
+    }
+
+    public bool Suppressed()
+    {
+        return NegativeSymbol.activeSelf;
+    }
+
+    public void SetDebuff()
+    {
+        is_debuffed = true;
+    }
+
+    public void ResetDebuff()
+    {
+        is_debuffed = false;
+    }
+
+    public bool GetDebuff()
+    {
+        return is_debuffed;
     }
 }

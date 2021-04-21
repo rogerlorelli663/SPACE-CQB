@@ -24,9 +24,9 @@ public class CardHighlight : MonoBehaviour
         {
             originalScale = hitCard.transform.localScale;
             highlightedCard = hitCard;
-            Debug.Log(hitCard.transform.localScale);
+            //Debug.Log(hitCard.transform.localScale);
             highlightedCard.transform.localScale = new Vector3(1,1);
-            Debug.Log(hitCard.transform.localScale);
+            //Debug.Log(hitCard.transform.localScale);
             highlightedCard.transform.position = new Vector3(highlightedCard.transform.position.x, highlightedCard.transform.position.y + 35, highlightedCard.transform.position.z - 1);
             ShiftSiblings(ShiftOffset, hitCard);
         }

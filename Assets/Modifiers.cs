@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class Modifiers : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> Tokens;
-    [SerializeField] private GameObject Blackhole_Description;
-    [SerializeField] private GameObject NoCapital_Description;
-    [SerializeField] private GameObject JunkYard_Description;
-    [SerializeField] private GameObject Supernova_Description;
-    [SerializeField] private GameObject PowerCap_Description;
-    [SerializeField] private GameObject ECM_Description;
     public enum EnviroModifier
     {
         None = 0,
@@ -32,8 +25,4 @@ public class Modifiers : MonoBehaviour
         Bomber,
         Anti_Strike
     }
-
-     
-
-
 }

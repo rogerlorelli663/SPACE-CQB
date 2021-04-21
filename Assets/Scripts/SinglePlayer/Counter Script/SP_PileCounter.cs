@@ -42,7 +42,7 @@ public class SP_PileCounter : MonoBehaviour
         int sum = 0;
         foreach(GameObject card in cards)
         {
-            cardsPower[index] = card.GetComponent<CQBCard>().GetPower();
+            cardsPower[index] = card.GetComponent<CQBCard>().GetCurrentPower();
             index++;
         }
         for(int i = 0; i < index; i++)

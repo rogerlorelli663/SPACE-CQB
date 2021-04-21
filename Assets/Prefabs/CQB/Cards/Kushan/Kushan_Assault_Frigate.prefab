@@ -2409,6 +2409,10 @@ MonoBehaviour:
   BaseSymbol: {fileID: 7492123811319338436}
   PositiveSymbol: {fileID: 7280829688760780179}
   NegativeSymbol: {fileID: 8010980004141073415}
+  ability: 2
+  is_enviro_modified: 0
+  is_modified_buddy: 0
+  is_modified_hunter: 0
 --- !u!114 &2285247225543460099
 MonoBehaviour:
   m_ObjectHideFlags: 0

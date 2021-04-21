@@ -98,7 +98,7 @@ public class GameCardsBehavior : MonoBehaviour
 
     public GameObject CreateCard(string card_name)
     {
-        Debug.Log("Trying to instantiate a " + card_name);
+        //Debug.Log("Trying to instantiate a " + card_name);
         GameObject card = GetOriginalCard(card_name);
         card = Instantiate(card,null);
         return card;
